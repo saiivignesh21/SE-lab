@@ -1,0 +1,125 @@
+Task 1: Initialize Git Repository & Add Maven Project Files (5 Marks)
+bash
+# Navigate to your project directory
+cd /path/to/your/maven-project
+
+# Initialize Git repository
+git init
+
+# Add all Maven project files to staging
+git add .
+
+# Verify files are staged (optional)
+git status
+Task 2: Set Global Config & Push to GitHub (5 Marks)
+bash
+# Set global Git configuration
+git config --global user.name "saiivignesh21"
+git config --global user.email "your-email@example.com"
+
+# Verify global config (optional)
+git config --global --list
+
+# Create initial commit
+git commit -m "Initial commit: Add Maven project files"
+
+# Add remote origin (replace with your actual repo URL)
+git remote add origin https://github.com/saiivignesh21/SE-lab.git
+
+# Verify remote is added (optional)
+git remote -v
+
+# Push to GitHub (main branch)
+git branch -M main
+git push -u origin main
+Task 3: Create Feature Branch Tracking Remote (4 Marks)
+bash
+# Create and switch to new local branch that tracks remote
+git checkout -b feature/engine-update --track origin/feature/engine-update
+
+# OR alternatively:
+git checkout --track origin/feature/engine-update
+
+# Make your initial changes/commit
+git add .
+git commit -m "Initial commit on feature/engine-update branch"
+
+# Push to GitHub (creates the remote branch)
+git push -u origin feature/engine-update
+
+# Verify branch tracking (optional)
+git branch -vv
+Task 4: Stash Work, Fix Hotfix, Return to Work
+This scenario uses git stash to temporarily save incomplete work:
+
+bash
+# You're on feature branch with incomplete CarController.java changes
+# Stash your incomplete work (saves it safely)
+git stash
+
+# Switch to main branch to apply hotfix
+git checkout main
+
+# Create hotfix branch (optional but recommended)
+git checkout -b hotfix/critical-bug
+
+# Fix the critical bug
+# Edit and save your files...
+git add .
+git commit -m "Hotfix: Resolve critical bug"
+
+# Push hotfix to GitHub
+git push -u origin hotfix/critical-bug
+
+# Switch back to your feature branch
+git checkout feature/engine-update
+
+# Restore your stashed work
+git stash pop
+
+# Continue editing CarController.java
+# When ready, commit your work
+git add .
+git commit -m "Complete CarController implementation"
+git push origin feature/engine-update
+Quick Reference - Complete Workflow
+bash
+# 1. Clone (if not done)
+git clone https://github.com/saiivignesh21/SE-lab.git
+cd SE-lab
+
+# 2. Copy your Maven project files here
+
+# 3. Initialize and push
+git config --global user.name "saiivignesh21"
+git config --global user.email "your-email@example.com"
+git add .
+git commit -m "Initial commit: Add Maven project"
+git remote add origin https://github.com/saiivignesh21/SE-lab.git
+git branch -M main
+git push -u origin main
+
+# 4. Create feature branch
+git checkout -b feature/engine-update
+git push -u origin feature/engine-update
+
+# 5. Stash scenario
+git stash                          # Save incomplete work
+git checkout main                  # Switch to main
+git checkout -b hotfix/bug-fix     # Create hotfix
+# ... fix bug ...
+git add . && git commit -m "Fix bug"
+git push origin hotfix/bug-fix
+git checkout feature/engine-update # Back to feature
+git stash pop                       # Restore work
+# ... continue ...
+git add . && git commit -m "Complete work"
+git push origin feature/engine-update
+Tips:
+
+Make sure Maven project files (pom.xml, src/, target/) are in the directory before git add .
+Use git status frequently to verify your changes
+The -u flag in git push -u sets upstream tracking for the branch
+git stash list shows all stashed changes
+git stash show -p shows stash contents before applying
+Would you like me to help you with any specific part of this workflow or clarify any commands?
